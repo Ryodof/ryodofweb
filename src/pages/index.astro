@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+  <main class="main-content">
+    <aside>
+      <h1 class="lil">What is going on on this website?</h1>
+      <ul>
+        <li class="lil">upgrade</li>
+        <li class="lil">idk</li>    
+        <li class="lil">idk</li>
+      </ul>
+    </aside>
+    
+    <hr class="hor-line">          
+
+    <div class="center-container">
+      
+      <div class="buttons-container">
+        <a href="https://t.me/Ryodofstech" target="_blank" class="social-button">TG Channel</a>
+        <a href="https://github.com/Ryodof" target="_blank" class="social-button">GitHub</a>
+        <button id="open-popup" class="social-button">QR-Code</button>
+      </div>
+    </div>
+
+    <div id="popup" class="popup grey-black">
+      <div class="popup-content">
+        <h3 class="lil">QR-Code of TGChannel</h3>
+        <img src="/QR-Code.png" alt="Telegram QR Code" class="qr-image">
+        <button id="close-popup" class="close-button">Close</button>
+      </div>
+    </div>
+
+    <hr class="hor-line">
+    
+    <dl class="description-list">
+      <dt class="lil">Who am I?</dt>
+      <dt class="lil">What do I do?</dt>
+      <dd>
+        <blockquote class="lil">
+          I am starter web and not only web developer.<br>
+          I learn coding, make learn projects like this site.<br>
+          I learn Python, HTML, CSS, JS, C++.
+        </blockquote>
+      </dd>
+    </dl>
+    
+    <hr class="hor-line">
+    
+    <h3 class="lil code-title">Further is code on Python,<br>that prints "Hello, World!"</h3>
+    
+    <pre class="code-block">
+      <code class="lil">
+        a = "Hello, World!"
+        print(a)
+      </code>
+    </pre>
+  </main>
+  
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const popup = document.getElementById('popup');
+      const openPopupBtn = document.getElementById('open-popup');
+      const closePopupBtn = document.getElementById('close-popup');
+
+      if (!popup || !openPopupBtn || !closePopupBtn) return;
+
+      // Open popup
+      openPopupBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popup.style.display = 'flex';
+      });
+
+      // Close popup
+      closePopupBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+      });
+
+      // Close popup when clicking outside
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (popup.style.display === 'flex' && target && !popup.contains(target) && target !== openPopupBtn) {
+          popup.style.display = 'none';
+        }
+      });
+
+      // Close popup with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popup.style.display === 'flex') {
+          popup.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  /* ===== Main Layout ===== */
+  .main-content {
+    margin-top: 20px;
+    padding: 1.5rem;
+    color: white;
+    font-size: 1rem;
+    line-height: 1.6;
+    background: black;
+  }
+
+  /* ===== Sections ===== */
+  aside {
+    margin-bottom: 2rem;
+  }
+
+  /* ===== Horizontal Line ===== */
+  .hor-line {
+    width: 97%;
+    height: 1px;
+    border: none;
+    background-color: #ffffff9a;
+    margin: 2rem auto;
+  }
+
+  /* ===== Center Container ===== */
+  .center-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border: 1px solid #a7a3a359;
+    border-radius: 12px;
+  }
+
+  .left-container {
+    flex: 0 0 30%;
+    border-left: 1px solid #a7a3a359;
+    padding-left: 1rem;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #a7a3a359;
+  }
+
+  .buttons-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* ===== Social Buttons ===== */
+  .social-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: black;
+    color: #ffffff9a;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid #a7a3a359;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .social-button:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+  }
+
+  /* ===== Text Styles ===== */
+  .lil {
+    color: #ffffff9a;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ===== Description List ===== */
+  .description-list {
+    margin: 2rem auto;
+    max-width: 800px;
+  }
+
+  .description-list dt {
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  .description-list dd {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ===== Code Block ===== */
+  .code-block {
+    background: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .code-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ===== Popup Styles ===== */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-content {
+    background-color: #222;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid #a7a3a359;
+  }
+
+  .qr-image {
+    width: 150px;
+    height: 150px;
+    margin: 1rem auto;
+    display: block;
+  }
+
+  .close-button {
+    background-color: #ffffff9a;
+    color: #222;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .close-button:hover {
+    background-color: white;
+  }
+
+  /* ===== Responsive Adjustments ===== */
+  @media (max-width: 768px) {
+    .center-container {
+      flex-direction: column;
+      width: 90%;
+    }
+
+    .left-container {
+      border-left: none;
+      border-bottom: 1px solid #a7a3a359;
+      padding-left: 0;
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
